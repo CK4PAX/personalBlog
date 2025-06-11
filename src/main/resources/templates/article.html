@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="www.thymeleaf.org">
+    <head>
+        <title> Personal Blog</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/stylesheet.css}"/>
+    </head>
+    <body>
+        <h1 th:utext="${post.getTitle}">Title</h1>
+        <p th:utext="${post.getDate}">Date</p>
+        <p th:text="${post.getContent}">Content</p>
+        <a class="button" href="/home">Return</a>
+    </body>
+</html>

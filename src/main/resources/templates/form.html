@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns:th='http://www.thymeleaf.org'>
+    <head>
+        <title>Personal Blog</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/stylesheet.css}"/>
+    </head>
+    <body>
+        <h1 th:text="${request.getRequestURI() == '/new'}?
+            'New Article':'Update Article'">Form</h1>
+
+        <form action="#" method="post" th:object="${post}"
+              th:action="${request.getRequestURI}"
+              th:if="${request.getMethod() == 'GET'}">
+            <table>
+                <tr>
+                    <td>
+                        <input placeholder="Article Title" 
+                               type="text" th:field="*{title}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input placeholder="Date" 
+                               type="text" th:field="*{date}" hidden>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea placeholder="Content" type="text" 
+                                  th:field="*{content}" cols="40" rows="10">
+                            </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="button" type="submit" 
+                               th:value="${request.getRequestURI == '/new'}?
+                               'publish':'update'">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <div th:if="${request.getMethod == 'POST'}">
+            <p th:text="|Article was ${request.getRequestURI == '/new' ?
+               'published': 'updated'}|"></p>
+            <a href="/admin">Return</a>
+        </div>
+
+    </body>
+</html>

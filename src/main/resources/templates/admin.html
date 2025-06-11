@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Personal Blog</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/stylesheet.css}"/>
+    </head>
+    <body>
+        <h1>Personal Blog</h1>
+        <a class="button" href="/new"> +Add</a>
+        <table th:if="${process == 'admin'}">
+            <tbody>
+                <tr th:each="p : ${posts}">
+                    <td class="title" th:text="${p.title}">Article</td>
+                    <td>
+                        <a class="button" 
+                           th:href="@{|/edit/${p.id}|}">Edit</a>
+                    </td>
+                    <td>
+                        <a class="button delete" 
+                           th:href="@{|/delete/${p.id}|}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div th:if="${process == 'delete'}">
+            <p>The article was deleted</p>
+            <a href="/admin"> Return</a>
+        </div>
+    </body> 
+</html>
